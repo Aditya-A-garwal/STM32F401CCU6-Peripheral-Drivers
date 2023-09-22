@@ -13,11 +13,14 @@ OPTIONS_OPT=-Os\
 
 # Other options passed to GCC
 #! if the nano.specs option is set, then the symbols for printf and scanf to print floating point numbers are not included by default
+#! if the rdimon.specs option is set, then semihosting is enabled (comment out this option to disable semihosting)
 OPTIONS_OTHER=-Wall\
 				-Werror\
 				-ffunction-sections\
 				-fdata-sections\
-				--specs=nano.specs
+				--specs=nano.specs\
+				--specs=nosys.specs\
+				--specs=rdimon.specs
 
 # Other directories for GCC to search for header files
 HEADER_SEARCH_DIRS=-I"CMSIS/Include"\
@@ -29,7 +32,8 @@ HEADER_SEARCH_DIRS=-I"CMSIS/Include"\
 PREPROCESSOR_MACROS=-DSTM32F401xC
 
 # Linker options passed to GCC for linking the program
-OPTIONS_LINK=-Wl,--gc-sections,-lgcc,-lc,-lnosys,-Map=$(BUILD_DIR)/main.map
+#! if the -lrdimo option is set, then semihosting is enabled (comment out this option to disable semihosting)
+OPTIONS_LINK=-Wl,--gc-sections,-lgcc,-lc,-lnosys,-lrdimon,-Map=$(BUILD_DIR)/main.map
 
 # Linker script to include while building the project
 LINKER_SCRIPT=-Tstm32f4xx.ld
