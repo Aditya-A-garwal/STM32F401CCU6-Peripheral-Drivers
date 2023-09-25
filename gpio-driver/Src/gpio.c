@@ -44,7 +44,7 @@ GPIOEnableClockAccess(Gpio_Port_t pPort) {
 }
 
 void
-GPIOInitPinOutput(Gpio_Port_t pPort, uint32_t pPin) {
+GPIOInitPinOutput(Gpio_Port_t pPort, Gpio_Pin_t pPin) {
 
     // to set pin X as a general purpose output, the value (0, 1) should be written at (2X + 1, 2X) in the MODER register
     // of the correct GPIO Port
@@ -83,7 +83,7 @@ GPIOInitPinOutput(Gpio_Port_t pPort, uint32_t pPin) {
     }
 }
 
-void GPIOInitPinInput(Gpio_Port_t pPort, uint32_t pPin) {
+void GPIOInitPinInput(Gpio_Port_t pPort, Gpio_Pin_t pPin) {
 
     // to set pin X as a general purpose input, the value (0, 0) should be written at (2X + 1, 2X) in the MODER register
     // of the correct GPIO Port
@@ -123,7 +123,7 @@ void GPIOInitPinInput(Gpio_Port_t pPort, uint32_t pPin) {
 }
 
 void
-GPIOInitPinOutputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Type_t pOutType) {
+GPIOInitPinOutputType(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Type_t pOutType) {
 
     // to set pin X as a push-pull output, bit X of the OTYPER register of the correct GPIO Port should be cleared
     // to set pin X as an open-drain output, bit X of the OTYPER register of the correct GPIO Port should be set
@@ -157,7 +157,7 @@ GPIOInitPinOutputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Type_t pOutType
 }
 
 void
-pinSetSpeed(GPIO_TypeDef *pPort, uint32_t pPin, Gpio_Out_Speed_t pOutSpeed) {
+pinSetSpeed(GPIO_TypeDef *pPort, Gpio_Pin_t pPin, Gpio_Out_Speed_t pOutSpeed) {
 
     // this is a utility function to make it easy for setting the speed (slew-rate) of an output pin
 
@@ -190,7 +190,7 @@ pinSetSpeed(GPIO_TypeDef *pPort, uint32_t pPin, Gpio_Out_Speed_t pOutSpeed) {
 }
 
 void
-pinSetPPDR(GPIO_TypeDef *pPort, uint32_t pPin, Gpio_In_Type_t pInType) {
+pinSetPPDR(GPIO_TypeDef *pPort, Gpio_Pin_t pPin, Gpio_In_Type_t pInType) {
 
     // this is a utility function to make it easy to set the type of an input pin
 
@@ -218,7 +218,7 @@ pinSetPPDR(GPIO_TypeDef *pPort, uint32_t pPin, Gpio_In_Type_t pInType) {
 }
 
 void
-GPIOInitPinOutputSpeed(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Speed_t pOutSpeed) {
+GPIOInitPinOutputSpeed(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Speed_t pOutSpeed) {
 
     // refer to the pinSetPPDR function for the register manipulation to set the output-speed of a pin
 
@@ -251,7 +251,7 @@ GPIOInitPinOutputSpeed(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Speed_t pOutSp
 }
 
 void
-GPIOInitPinInputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_In_Type_t pInType) {
+GPIOInitPinInputType(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_In_Type_t pInType) {
 
     // refer to the pinSetPPDR function for the register manipulation to set the input-type of a pin
 
@@ -285,7 +285,7 @@ GPIOInitPinInputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_In_Type_t pInType) {
 
 
 void
-GPIOWrite(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal) {
+GPIOWrite(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Val_t pVal) {
 
     // to set the state of pin X to high, bit X of the ODR register must be set
     // to set the state of pin X to low, bit X of the ODR register must be cleared
@@ -321,7 +321,7 @@ GPIOWrite(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal) {
 }
 
 void
-GPIOWriteAtomic(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal) {
+GPIOWriteAtomic(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Val_t pVal) {
 
     // to atomically set the state of pin X to high, bit X of the ODR register must be set
     // to atomically set the state of pin X to low, bit (16+X) of the ODR register must be cleared
@@ -356,7 +356,7 @@ GPIOWriteAtomic(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal) {
     }
 }
 
-uint8_t GPIORead(Gpio_Port_t pPort, uint32_t pPin) {
+uint8_t GPIORead(Gpio_Port_t pPort, Gpio_Pin_t pPin) {
     // to read the value of pin X, the value of bit X in the IDR register needs to be fetched
 
     switch (pPort) {

@@ -7,9 +7,9 @@ int main() {
     GPIOEnableClockAccess(GPIO_PORT_C);
 
     // initialize Pin 13 as an output pin
-    GPIOInitPinOutput(GPIO_PORT_C, 13);
-    GPIOInitPinOutputType(GPIO_PORT_C, 13, GPIO_OUTPUT_PUSH_PULL);
-    GPIOInitPinOutputSpeed(GPIO_PORT_C, 13, GPIO_SPEED_LOW);
+    GPIOInitPinOutput(GPIO_PORT_C, GPIO_PIN_13);
+    GPIOInitPinOutputType(GPIO_PORT_C, GPIO_PIN_13, GPIO_OUTPUT_PUSH_PULL);
+    GPIOInitPinOutputSpeed(GPIO_PORT_C, GPIO_PIN_13, GPIO_SPEED_LOW);
 
     for (;;) {
 

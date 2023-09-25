@@ -15,6 +15,25 @@ typedef enum {
     GPIO_PORT_H
 } Gpio_Port_t;
 
+typedef enum {
+    GPIO_PIN_0    = 0,
+    GPIO_PIN_1    = 1,
+    GPIO_PIN_2    = 2,
+    GPIO_PIN_3    = 3,
+    GPIO_PIN_4    = 4,
+    GPIO_PIN_5    = 5,
+    GPIO_PIN_6    = 6,
+    GPIO_PIN_7    = 7,
+    GPIO_PIN_8    = 8,
+    GPIO_PIN_9    = 9,
+    GPIO_PIN_10   = 10,
+    GPIO_PIN_11   = 11,
+    GPIO_PIN_12   = 12,
+    GPIO_PIN_13   = 13,
+    GPIO_PIN_14   = 14,
+    GPIO_PIN_15   = 15,
+} Gpio_Pin_t;
+
 /**
  * @brief               Possible output-types (methods of controlling the pin state) of a pin
  *
@@ -81,7 +100,7 @@ void    GPIOEnableClockAccess(Gpio_Port_t pPort);
  * @param pPort         The GPIO Peripheral Port to which the Pin belongs
  * @param pPin          The Pin to be used as a general-purpose output
  */
-void    GPIOInitPinOutput(Gpio_Port_t pPort, uint32_t pPin);
+void    GPIOInitPinOutput(Gpio_Port_t pPort, Gpio_Pin_t pPin);
 
 /**
  * @brief               Initialize the specified Pin on the specified Port as a general-purpose input
@@ -92,7 +111,7 @@ void    GPIOInitPinOutput(Gpio_Port_t pPort, uint32_t pPin);
  * @param pPort         The GPIO Peripheral Port to which the Pin belongs
  * @param pPin          The Pin to be used as a general-purpose input
  */
-void    GPIOInitPinInput(Gpio_Port_t pPort, uint32_t pPin);
+void    GPIOInitPinInput(Gpio_Port_t pPort, Gpio_Pin_t pPin);
 
 /**
  * @brief               Set the output-type/method of state control (push-pull or open-drain) of the specified Pin on the specified Port
@@ -104,7 +123,7 @@ void    GPIOInitPinInput(Gpio_Port_t pPort, uint32_t pPin);
  * @param pPin          The Pin whose output-type needs to be set
  * @param pOutType      The type of output this Pin should be used as
  */
-void    GPIOInitPinOutputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Type_t pOutType);
+void    GPIOInitPinOutputType(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Type_t pOutType);
 
 /**
  * @brief               Set the output-speed/slew-rate (low, medium, high or very-high) of the specified Pin on the specified Port
@@ -116,7 +135,7 @@ void    GPIOInitPinOutputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Type_t 
  * @param pPin          The Pin whose output-speed needs to be set
  * @param pOutSpeed     The speed of output of this Pin
  */
-void    GPIOInitPinOutputSpeed(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Speed_t pOutSpeed);
+void    GPIOInitPinOutputSpeed(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Speed_t pOutSpeed);
 
 /**
  * @brief               Set the input-type (floating, pullup or pulldown) of the specified Pin on the specified Port
@@ -128,7 +147,7 @@ void    GPIOInitPinOutputSpeed(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Speed_
  * @param pPin          The Pin whose input-type needs to be set
  * @param pInType       The type of input of this Pin
  */
-void    GPIOInitPinInputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_In_Type_t pInType);
+void    GPIOInitPinInputType(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_In_Type_t pInType);
 
 /**
  * @brief               Non-atomically update the state (on or off) of the specified Pin on the specified Port (by writing directly to the ODR register)
@@ -140,7 +159,7 @@ void    GPIOInitPinInputType(Gpio_Port_t pPort, uint32_t pPin, Gpio_In_Type_t pI
  * @param pPin          The Pin whose output-state needs to be set
  * @param pVal          The value of the output (on or off)
  */
-void    GPIOWrite(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal);
+void    GPIOWrite(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Val_t pVal);
 
 /**
  * @brief               Atomically update the state (on or off) of the specified Pin on the specified Port (by writing to the BSRR register)
@@ -152,7 +171,7 @@ void    GPIOWrite(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal);
  * @param pPin          The Pin whose output-state needs to be set
  * @param pVal          The value of the output (on or off)
  */
-void    GPIOWriteAtomic(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal);
+void    GPIOWriteAtomic(Gpio_Port_t pPort, Gpio_Pin_t pPin, Gpio_Out_Val_t pVal);
 
 /**
  * @brief               Read the digital state (true of false) of the specified Pin on the specified Port
@@ -165,4 +184,4 @@ void    GPIOWriteAtomic(Gpio_Port_t pPort, uint32_t pPin, Gpio_Out_Val_t pVal);
  *
  * @return uint8_t      Zero if the pin is being pulled low, otherwise a non-zero value
  */
-uint8_t GPIORead(Gpio_Port_t pPort, uint32_t pPin);
+uint8_t GPIORead(Gpio_Port_t pPort, Gpio_Pin_t pPin);
