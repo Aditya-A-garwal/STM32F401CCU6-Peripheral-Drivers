@@ -132,46 +132,82 @@ void        USARTCommEnable(Usart_t pUart, Usart_Comm_t pUartComm);
  */
 void        USARTPeriphEnable(Usart_t pUart);
 
+
 /**
- * @brief               Enable the interrupt that is fired on detecting break characters for the specified USART Peripheral
+ * @brief               Disable the specified USART (stop communication on the peripheral)
+ *
+ * @param pUart         The USART Peripheral on which to cease communication
+ */
+void        USARTPeriphDisable(Usart_t pUart);
+
+/**
+ * @brief               Enables the callback function for when break characters are detected for the specified USART
  *
  * @note                This function requires global interrupts to be enabled (by calling the __enable_irq() function)
  * @note                When this function is called, the USARTLbITCallback function is called whenever a break character is detected,
  *                      and the software sequence to clear the flag must be provided in the callback function
  *
- * @param pUart         The USART Peripheral on which to enable the interrupt
+ * @param pUart         The USART Peripheral on which to enable the callback function
  */
-void        USARTEnableLbIT(Usart_t pUart);
+void        USARTEnableLbCallback(Usart_t pUart);
 
 /**
- * @brief               Enables the interrupt that is fired on detecting parity errors
+ * @brief               Enables the callback function for parity errors are detected for the specified USART
  *
  * @note                This function requires global interrupts to be enabled (by calling the __enable_irq() function)
  * @note                When this function is called, the USARTPeITCallback function is called whenever a parity error is detected,
  *                      and the software sequence to clear the flag must be provided in the callback function
  *
- * @param pUart         The USART Peripheral on which to enable the interrupt
+ * @param pUart         The USART Peripheral on which to enable the callback function
  */
-void        USARTEnablePeIT(Usart_t pUart);
+void        USARTEnablePeCallback(Usart_t pUart);
 
 /**
- * @brief               Enables the interrupt that is fired when a character is ready to read from the specified USART (or when an overrun error occours)
+ * @brief               Enables the callback function for when a character is ready to read from the specified USART (or when an overrun error occurs)
  *
  * @note                This function requires global interrupts to be enabled (by calling the __enable_irq() function)
  * @note                When this function is called, the USARTRxITCallback function is called whenever a character is ready to be read,
  *                      and the software sequence to clear the flag must be provided in the callback function
  * @note                This function must be called to enable asynchronously reading the USART
  *
- * @param pUart         The USART peripheral on which to enable the interrupt
+ * @param pUart         The USART peripheral on which to enable the callback function
  */
-void        USARTEnableRxIT(Usart_t pUart);
+void        USARTEnableRxCallback(Usart_t pUart);
 
 /**
- * @brief               Enabled the interrupt that is fired when a character is ready to be transmitted on the specified USART
+ * @brief               Enables the callback function for when a character is ready to be transmitted on the specified USART
  *
- * @param pUart         The USART peripheral on which to enable the interrupt
+ * @param pUart         The USART peripheral on which to enable the callback function
  */
-void        USARTEnableTxIT(Usart_t pUart);
+void        USARTEnableTxCallback(Usart_t pUart);
+
+/**
+ * @brief               Disables the callback function for when break characters are detected for the specified USART
+ *
+ * @param pUart         The USART peripheral on which to disable the callback function
+ */
+void        USARTDisableLbCallback(Usart_t pUart);
+
+/**
+ * @brief               Disables the callback function for when parity errors are detected on the specified USART
+ *
+ * @param pUart         The USART peripheral on which to disable the callback function
+ */
+void        USARTDisablePeCallback(Usart_t pUart);
+
+/**
+ * @brief               Disables the callback function for when a character is ready to be read from the specified USART (or when an overrun errors occurs)
+ *
+ * @param pUart         The USART Peripheral on which to disable the callback function
+ */
+void        USARTDisableRxCallback(Usart_t pUart);
+
+/**
+ * @brief               Disables the callback function for when a character is ready to be transmitted on the specified USART
+ *
+ * @param pUart         The USART Peripheral on which to disable the callback function
+ */
+void        USARTDisableTxCallback(Usart_t pUart);
 
 /**
  * @brief               Read the specified number of characters from the specified USART Peripheral into a buffer (blocking)
@@ -199,7 +235,7 @@ void        USARTSendBufBlocking(Usart_t pUart, uint8_t *pBuf, uint32_t pCount);
  *                      If the specified number of characters have not been received on the USART since the last read,
  *                      the function does not block, and returns the number of characters that were available and could be read
  *
- * @note                The USARTEnableRxIT function must be called before this function is called to enable asynchronously reading from the USART
+ * @note                The USARTEnableRxCallback function must be called before this function is called to enable asynchronously reading from the USART
  *
  * @param pUart         The USART peripheral from which to read characters
  * @param pBuf          The buffer into which the characters should be read
@@ -262,7 +298,7 @@ void        USARTPeITCallback(Usart_t pUart, uint8_t pC);
 /**
  * @brief               Callback function that is called when a byte is available to read from the USART
  *
- * @note                This function must be defined by the user, and is only called after the USARTEnableRxIT function is called for the same USART
+ * @note                This function must be defined by the user, and is only called after the USARTEnableRxCallback function is called for the same USART
  *
  * @param pUart         The USART Peripheral on which the byte is available to be read from
  * @param pC            The character that was available on the USART

@@ -18,7 +18,7 @@ int main() {
 
     USARTPeriphEnable(USART_PERIPH_2);
 
-    USARTEnableRxIT(USART_PERIPH_2);
+    USARTEnableRxCallback(USART_PERIPH_2);
 
     for (;;) {
         uint32_t len = USARTRecvBuf(USART_PERIPH_2, buffer, sizeof(buffer) / sizeof(buffer[0]));

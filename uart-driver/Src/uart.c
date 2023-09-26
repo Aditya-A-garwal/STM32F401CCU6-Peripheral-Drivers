@@ -432,6 +432,191 @@ USARTPeriphEnable(Usart_t pUart) {
 }
 
 void
+USARTPeriphDisable(Usart_t pUart) {
+
+    // to disable the USART Peripheral after configuration is complete, the UE bit flag must be cleared in CR1
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            USART_CLR_BIT(USART2->CR1, USART_CR1_UEn);
+            break;
+
+        case USART_PERIPH_1:
+            USART_CLR_BIT(USART1->CR1, USART_CR1_UEn);
+            break;
+
+        case USART_PERIPH_6:
+            USART_CLR_BIT(USART6->CR1, USART_CR1_UEn);
+            break;
+    }
+}
+
+void
+USARTEnableLbCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            NVIC_EnableIRQ(USART2_IRQn);
+            USART_SET_BIT(USART2->CR2, USART_CR2_LBDIEn);
+            break;
+
+        case USART_PERIPH_1:
+            NVIC_EnableIRQ(USART1_IRQn);
+            USART_SET_BIT(USART1->CR2, USART_CR2_LBDIEn);
+            break;
+
+        case USART_PERIPH_6:
+            NVIC_EnableIRQ(USART6_IRQn);
+            USART_SET_BIT(USART6->CR2, USART_CR2_LBDIEn);
+            break;
+    }
+}
+
+void
+USARTEnablePeCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            NVIC_EnableIRQ(USART2_IRQn);
+            USART_SET_BIT(USART2->CR1, USART_CR1_PEIEn);
+            break;
+
+        case USART_PERIPH_1:
+            NVIC_EnableIRQ(USART1_IRQn);
+            USART_SET_BIT(USART1->CR1, USART_CR1_PEIEn);
+            break;
+
+        case USART_PERIPH_6:
+            NVIC_EnableIRQ(USART6_IRQn);
+            USART_SET_BIT(USART6->CR1, USART_CR1_PEIEn);
+            break;
+    }
+}
+
+void
+USARTEnableRxCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            NVIC_EnableIRQ(USART2_IRQn);
+            USART_SET_BIT(USART2->CR1, USART_CR1_RXNEIEn);
+            break;
+
+        case USART_PERIPH_1:
+            NVIC_EnableIRQ(USART1_IRQn);
+            USART_SET_BIT(USART1->CR1, USART_CR1_RXNEIEn);
+            break;
+
+        case USART_PERIPH_6:
+            NVIC_EnableIRQ(USART6_IRQn);
+            USART_SET_BIT(USART6->CR1, USART_CR1_RXNEIEn);
+            break;
+    }
+}
+
+void
+USAREnableTxCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            NVIC_EnableIRQ(USART2_IRQn);
+            USART_SET_BIT(USART2->CR1, USART_CR1_TEn);
+            break;
+
+        case USART_PERIPH_1:
+            NVIC_EnableIRQ(USART1_IRQn);
+            USART_SET_BIT(USART1->CR1, USART_CR1_TEn);
+            break;
+
+        case USART_PERIPH_6:
+            NVIC_EnableIRQ(USART6_IRQn);
+            USART_SET_BIT(USART6->CR1, USART_CR1_TEn);
+            break;
+    }
+}
+
+void
+USARTDisableLbCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            USART_CLR_BIT(USART2->CR2, USART_CR2_LBDIEn);
+            break;
+
+        case USART_PERIPH_1:
+            USART_CLR_BIT(USART1->CR2, USART_CR2_LBDIEn);
+            break;
+
+        case USART_PERIPH_6:
+            USART_CLR_BIT(USART6->CR2, USART_CR2_LBDIEn);
+            break;
+    }
+}
+
+void
+USARTDisablePeCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            USART_CLR_BIT(USART2->CR1, USART_CR1_PEIEn);
+            break;
+
+        case USART_PERIPH_1:
+            USART_CLR_BIT(USART1->CR1, USART_CR1_PEIEn);
+            break;
+
+        case USART_PERIPH_6:
+            USART_CLR_BIT(USART6->CR1, USART_CR1_PEIEn);
+            break;
+    }
+}
+
+void
+USARTDisableRxCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            USART_CLR_BIT(USART2->CR1, USART_CR1_RXNEIEn);
+            break;
+
+        case USART_PERIPH_1:
+            USART_CLR_BIT(USART1->CR1, USART_CR1_RXNEIEn);
+            break;
+
+        case USART_PERIPH_6:
+            USART_CLR_BIT(USART6->CR1, USART_CR1_RXNEIEn);
+            break;
+    }
+}
+
+void
+USARTDisableTxCallback(Usart_t pUart) {
+
+    switch (pUart) {
+
+        case USART_PERIPH_2:
+            USART_CLR_BIT(USART2->CR1, USART_CR1_TEn);
+            break;
+
+        case USART_PERIPH_1:
+            USART_CLR_BIT(USART1->CR1, USART_CR1_TEn);
+            break;
+
+        case USART_PERIPH_6:
+            USART_CLR_BIT(USART6->CR1, USART_CR1_TEn);
+            break;
+    }
+}
+
+void
 USARTRecvBufBlocking(Usart_t pUart, uint8_t *pBuf, uint32_t pCount) {
 
     // Incoming characters from the USART are stored in the DR register,
@@ -613,115 +798,6 @@ USARTSendBreak(Usart_t pUart) {
         case USART_PERIPH_6:
             while (USART_GET_BIT(USART6->CR1, USART_CR1_SBKn));
             USART_SET_BIT(USART6->CR1, USART_CR1_SBKn);
-            break;
-    }
-}
-
-void
-USARTEnableOvIT(Usart_t pUart) {
-
-    USARTEnableRxIT(pUart);
-
-    // switch (pUart) {
-
-    //     case USART_PERIPH_2:
-    //         NVIC_EnableIRQ(USART2_IRQn);
-    //         break;
-
-    //     case USART_PERIPH_1:
-    //         NVIC_EnableIRQ(USART1_IRQn);
-    //         break;
-
-    //     case USART_PERIPH_6:
-    //         NVIC_EnableIRQ(USART6_IRQn);
-    //         break;
-    // }
-}
-
-void
-USARTEnableLbIT(Usart_t pUart) {
-
-    switch (pUart) {
-
-        case USART_PERIPH_2:
-            NVIC_EnableIRQ(USART2_IRQn);
-            USART_SET_BIT(USART2->CR2, USART_CR2_LBDIEn);
-            break;
-
-        case USART_PERIPH_1:
-            NVIC_EnableIRQ(USART1_IRQn);
-            USART_SET_BIT(USART1->CR2, USART_CR2_LBDIEn);
-            break;
-
-        case USART_PERIPH_6:
-            NVIC_EnableIRQ(USART6_IRQn);
-            USART_SET_BIT(USART6->CR2, USART_CR2_LBDIEn);
-            break;
-    }
-}
-
-void
-USARTEnablePeIT(Usart_t pUart) {
-
-    switch (pUart) {
-
-        case USART_PERIPH_2:
-            NVIC_EnableIRQ(USART2_IRQn);
-            USART_SET_BIT(USART2->CR1, USART_CR1_PEIEn);
-            break;
-
-        case USART_PERIPH_1:
-            NVIC_EnableIRQ(USART1_IRQn);
-            USART_SET_BIT(USART1->CR1, USART_CR1_PEIEn);
-            break;
-
-        case USART_PERIPH_6:
-            NVIC_EnableIRQ(USART6_IRQn);
-            USART_SET_BIT(USART6->CR1, USART_CR1_PEIEn);
-            break;
-    }
-}
-
-void
-USARTEnableRxIT(Usart_t pUart) {
-
-    switch (pUart) {
-
-        case USART_PERIPH_2:
-            NVIC_EnableIRQ(USART2_IRQn);
-            USART_SET_BIT(USART2->CR1, USART_CR1_RXNEIEn);
-            break;
-
-        case USART_PERIPH_1:
-            NVIC_EnableIRQ(USART1_IRQn);
-            USART_SET_BIT(USART1->CR1, USART_CR1_RXNEIEn);
-            break;
-
-        case USART_PERIPH_6:
-            NVIC_EnableIRQ(USART6_IRQn);
-            USART_SET_BIT(USART6->CR1, USART_CR1_RXNEIEn);
-            break;
-    }
-}
-
-void
-USAREnableTxIT(Usart_t pUart) {
-
-    switch (pUart) {
-
-        case USART_PERIPH_2:
-            NVIC_EnableIRQ(USART2_IRQn);
-            USART_SET_BIT(USART2->CR1, USART_CR1_TEn);
-            break;
-
-        case USART_PERIPH_1:
-            NVIC_EnableIRQ(USART1_IRQn);
-            USART_SET_BIT(USART1->CR1, USART_CR1_TEn);
-            break;
-
-        case USART_PERIPH_6:
-            NVIC_EnableIRQ(USART6_IRQn);
-            USART_SET_BIT(USART6->CR1, USART_CR1_TEn);
             break;
     }
 }
