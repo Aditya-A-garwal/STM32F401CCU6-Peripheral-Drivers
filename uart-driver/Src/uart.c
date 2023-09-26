@@ -985,7 +985,7 @@ USART6_IRQHandler() {
     else if (USART_GET_BIT(sr, USART_SR_TXEn)) {
 
     // if asynchronous TX is allowed, read the next character from the circular buffer and transmit it
-#if defined(TX1_ENABLE_ASYNC)
+#if defined(TX6_ENABLE_ASYNC)
         if (tx6_next_src != tx6_next_dst) {
             USART6->DR = tx6_buf[tx6_next_src++];
             tx6_next_src &= (__USART_TX_BUF_LEN - 1);
