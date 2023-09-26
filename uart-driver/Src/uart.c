@@ -1,12 +1,12 @@
 #include "stm32f4xx.h"
 #include "uart.h"
 
-#if defined(__USART_RX_BUF_LEN) && ((__USART_RX_BUF_LEN & 3) != 0)
-#error "Length of RX Buffer not word aligned (not divisible by 4)"
+#if defined(__USART_RX_BUF_LEN) && ((__USART_RX_BUF_LEN & (__USART_RX_BUF_LEN - 1)) != 0)
+#error "Length of RX Buffer not power of 2"
 #endif
 
-#if defined(__USART_TX_BUF_LEN) && ((__USART_TX_BUF_LEN & 3) != 0)
-#error "Length of TX Buffer not word aligned (not divisible by 4)"
+#if defined(__USART_TX_BUF_LEN) && ((__USART_TX_BUF_LEN & (__USART_TX_BUF_LEN - 1)) != 0)
+#error "Length of TX Buffer not power of 2"
 #endif
 
 /** Position of USART2 Clock Enable Bit */

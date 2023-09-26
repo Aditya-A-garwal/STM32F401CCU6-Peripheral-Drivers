@@ -46,7 +46,7 @@ The list of macros to be defined are shown below -
 
 Defining each macro creates a buffer for the specific USART for the specific direction of communication, which holds characters that have been queued/received, but not transmitted/consumed yet. **Each of these macros is defined by default.**
 
-The size of the buffers are defined in the ```Inc/uart.h``` file. The size of the RX buffers is determined by the ```__USART_RX_BUF_LEN``` macro, while that of the TX buffers is determined by the ```__USART_TX_BUF_LEN``` macro. **The length of these buffers must be a multiple of 4.** The default values of both these macros is 1024.
+The size of the buffers are defined in the ```Inc/uart.h``` file. The size of the RX buffers is determined by the ```__USART_RX_BUF_LEN``` macro, while that of the TX buffers is determined by the ```__USART_TX_BUF_LEN``` macro. **The length of these buffers must be a power of 2.** The default values of both these macros is 1024.
 
 It is important to make sure that these buffers are adequately large for your application. **The RX buffer for a USART must be large enough to store all characters between two consecutive reads.** Failing this will cause new characters to overwrite old characters in the buffer before they get consumed. **The TX buffer for a USART must be large enough to hold all characters that can be queued at a time without being transmitted.** Failing this, certain old characters may get overwritten by new ones before they are transmitted.
 
