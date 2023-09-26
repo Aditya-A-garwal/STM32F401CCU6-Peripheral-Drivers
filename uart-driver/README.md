@@ -52,11 +52,11 @@ It is important to make sure that these buffers are adequately large for your ap
 
 Asynchronous IO also requires global interrupts to enabled using the ```__enable_irq()``` function. Failing to call this function, or calling the ```__disable_irq()``` function will cause it to stop working.
 
-## Callback Functions and Interrupts
+## Callback Functions And Interrupts
 
 The library declares callback functions for interrupts caused by the following errors/events. Each callback can be individually enabled, and it is the responsibility of the application to define/implement these functions, failing which the following default behaviors will be applied.
 
-|Event/Error|Cause of occourence|Callback Function Name|Default Behavior|
+|Event/Error|Cause Of Occurence|Callback Function Name|Default Behavior|
 |-|-|-|-|
 |Overrun Error|A character became ready to be read while the previous was not consumed.|```USARTOvITCallback```|Disable all interrupts and permanently block program execution.|
 |Parity Error|Received data does not match the parity specified (even by default).|```USARTPeITCallback```|Disable all interrupts and permanently block program execution.|

@@ -22,7 +22,7 @@ Each directory is responsible for a single driver, that can be used for your own
 
 The latest version of CMSIS can be downloaded either using the [CubeMX software](https://www.st.com/en/development-tools/stm32cubemx.html) from ST, or from [this location on the ST website](https://www.st.com/en/embedded-software/stm32cubef4.html). This downloads a _software pack_ for the microcontroller, which contains the CMSIS directory of interest.
 
-## Building and Consuming the Drivers
+## Building And Consuming the Drivers
 
 ### Dependencies
 
